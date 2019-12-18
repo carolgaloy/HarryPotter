@@ -20,6 +20,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTo
 
 app.use('/books', require('./routes/books'));
 app.use('/houses', require('./routes/houses'));
+app.use('/horcruxes', require('./routes/horcruxes'));
 
 app.listen(port, () => {
     console.log("Server is running on " + port + " port");
