@@ -9,6 +9,17 @@ router.get('/all', (req, res) => {
         }).catch(err => console.log(err));
 });
 
+router.get('/all/:id', (req, res) => {
+
+    const {id} = req.params;
+
+    houseModel.findOne({ _id: id })
+        .then(house => {
+            res.send(house);
+        })
+        .catch(err => console.log(err));
+});
+
 router.post('/', (req, res) => {
 
     const {name, founder, head, img, ghost, colors, animal} = req.body;

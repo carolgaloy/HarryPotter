@@ -9,6 +9,17 @@ router.get('/all', (req, res) => {
         }).catch(err => console.log(err));
 });
 
+router.get('/all/:id', (req, res) => {
+
+    const {id} = req.params;
+
+    horcruxModel.findOne({ _id: id })
+        .then(horcrux => {
+            res.send(horcrux);
+        })
+        .catch(err => console.log(err));
+});
+
 router.post('/', (req, res) => {
 
     const {name, img, death, deathdate, hiding, destroyedby, destroyedwith, description} = req.body;

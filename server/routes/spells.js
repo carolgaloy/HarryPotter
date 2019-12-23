@@ -9,6 +9,28 @@ router.get('/all', (req, res) => {
         }).catch(err => console.log(err));
 });
 
+router.get('/all/:id', (req, res) => {
+
+    const {id} = req.params;
+
+    spellModel.findOne({ _id: id })
+        .then(spell => {
+            res.send(spell);
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/type/:type', (req, res) => {
+
+    const {type} = req.params;
+
+    spellModel.find({ type: type })
+        .then(spells => {
+            res.send(spells);
+        })
+        .catch(err => console.log(err));
+});
+
 router.post('/', (req, res) => {
 
     const {name, spell, pronunciation, type, associated, description} = req.body;
