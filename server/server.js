@@ -23,6 +23,7 @@ app.use('/houses', require('./routes/houses'));
 app.use('/horcruxes', require('./routes/horcruxes'));
 app.use('/spells', require('./routes/spells'));
 app.use('/movies', require('./routes/movies'));
+app.use('/characters', require('./routes/characters'));
 
 app.listen(port, () => {
     console.log("Server is running on port", port);
