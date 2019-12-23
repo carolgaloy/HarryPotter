@@ -22,10 +22,12 @@ router.get('/all/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    const {title, year, img, pages, description, isbn} = req.body;
+    const {name, gender, img, family, school, house, role, pet, dateOfBirth, dateOfDeath, specie, patronus, boggart, wand, 
+        deathEater, dumbledoresArmy, ministryOfMagic, aliases, firstIntroduced, playedBy} = req.body;
 
     const newCharacter = new characterModel({
-        title, year, img, pages, description, isbn
+        name, gender, img, family, school, house, role, pet, dateOfBirth, dateOfDeath, specie, patronus, boggart, wand, 
+        deathEater, dumbledoresArmy, ministryOfMagic, aliases, firstIntroduced, playedBy
     })
 
     newCharacter.save()

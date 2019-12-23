@@ -7,7 +7,7 @@ const characterSchema = new mongoose.Schema({
         unique: true
     },
     gender: {
-        type: Number,
+        type: String,
         required: true
     },
     img: {
@@ -25,8 +25,10 @@ const characterSchema = new mongoose.Schema({
         type: Object
     },
     role: {
-        type: String,
-        required: true
+        type: String
+    },
+    pet: {
+        type: Object
     },
     dateOfBirth: {
         type: String
