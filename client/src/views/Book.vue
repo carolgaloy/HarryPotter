@@ -38,17 +38,21 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   computed: {
-    book() {
-      return this.$store.state.selectedBook;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      book: state => state.booksModule.selectedBook,
+      loading: state => state.isLoading
+    })
+  },
+  methods: {
+    ...mapActions({
+      getBook: "getBook"
+    })
   },
   created() {
-    this.$store.dispatch("getBook", this.$route.params.id);
+    this.getBook(this.$route.params.id);
   }
 };
 </script>

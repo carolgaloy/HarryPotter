@@ -43,17 +43,21 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   computed: {
-    house() {
-      return this.$store.state.selectedHouse;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      house: state => state.housesModule.selectedHouse,
+      loading: state => state.isLoading
+    })
+  },
+  methods: {
+    ...mapActions({
+      getHouse: "getHouse"
+    })
   },
   created() {
-    this.$store.dispatch("getHouse", this.$route.params.id);
+    this.getHouse(this.$route.params.id);
   }
 };
 </script>

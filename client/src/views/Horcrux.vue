@@ -38,17 +38,22 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   computed: {
-    horcrux() {
-      return this.$store.state.selectedHorcrux;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      horcrux: state => state.horcruxesModule.selectedHorcrux,
+      loading: state => state.isLoading
+    })
+  },
+  methods: {
+    ...mapActions({
+      getHorcrux: "getHorcrux"
+    })
   },
   created() {
-    this.$store.dispatch("getHorcrux", this.$route.params.id);
+    this.getHorcrux(this.$route.params.id);
   }
 };
 </script>

@@ -21,6 +21,7 @@
 
 <script>
 import BookItem from "../components/BookItem";
+import { mapState } from "vuex";
 
 export default {
   name: "Books",
@@ -28,12 +29,10 @@ export default {
     BookItem
   },
   computed: {
-    books() {
-      return this.$store.state.books;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      books: state => state.booksModule.books,
+      loading: state => state.isLoading
+    })
   },
   created() {
     this.$store.dispatch("getBooks");

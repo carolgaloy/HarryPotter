@@ -21,6 +21,7 @@
 
 <script>
 import HorcruxItem from "../components/HorcruxItem";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Horcruxes",
@@ -28,15 +29,18 @@ export default {
     HorcruxItem
   },
   computed: {
-    horcruxes() {
-      return this.$store.state.horcruxes;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      horcruxes: state => state.horcruxesModule.horcruxes,
+      loading: state => state.isLoading
+    })
+  },
+  methods: {
+    ...mapActions({
+      getHorcruxes: "getHorcruxes"
+    })
   },
   created() {
-    this.$store.dispatch("getHorcruxes");
+    this.getHorcruxes();
   }
 };
 </script>

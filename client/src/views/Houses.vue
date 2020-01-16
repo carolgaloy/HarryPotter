@@ -20,14 +20,14 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   computed: {
-    houses() {
-      return this.$store.state.houses;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      houses: state => state.housesModule.houses,
+      loading: state => state.isLoading
+    })
   },
   created() {
     this.$store.dispatch("getHouses");
