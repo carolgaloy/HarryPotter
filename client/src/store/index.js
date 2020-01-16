@@ -29,6 +29,18 @@ export default new Vuex.Store({
     },
     setSelectedBook: (state, payload) => {
       state.selectedBook = payload;
+    },
+    setHorcruxes: (state, payload) => {
+      state.horcruxes = payload;
+    },
+    setSelectedHorcrux: (state, payload) => {
+      state.selectedHorcrux = payload;
+    },
+    setSpells: (state, payload) => {
+      state.spells = payload;
+    },
+    setSelectedSpell: (state, payload) => {
+      state.selectedSpell = payload;
     }
   },
   actions: {
@@ -84,6 +96,66 @@ export default new Vuex.Store({
         .then(result => {
           //console.log(result.data);
           context.commit("setSelectedBook", result.data);
+          context.commit("isLoading", false);
+        })
+        .catch(e => {
+          console.log(e);
+          context.commit("isLoading", false);
+          context.commit("isError", true);
+        });
+    },
+    getHorcruxes: context => {
+      context.commit("isLoading", true);
+      axios
+        .get("/horcruxes/all")
+        .then(result => {
+          //console.log(result.data);
+          context.commit("setHorcruxes", result.data);
+          context.commit("isLoading", false);
+        })
+        .catch(e => {
+          console.log(e);
+          context.commit("isLoading", false);
+          context.commit("isError", true);
+        });
+    },
+    getHorcrux: (context, horcruxId) => {
+      context.commit("isLoading", true);
+      axios
+        .get(`/horcruxes/all/${horcruxId}`)
+        .then(result => {
+          //console.log(result.data);
+          context.commit("setSelectedHorcrux", result.data);
+          context.commit("isLoading", false);
+        })
+        .catch(e => {
+          console.log(e);
+          context.commit("isLoading", false);
+          context.commit("isError", true);
+        });
+    },
+    getSpells: context => {
+      context.commit("isLoading", true);
+      axios
+        .get("/spells/all")
+        .then(result => {
+          //console.log(result.data);
+          context.commit("setSpells", result.data);
+          context.commit("isLoading", false);
+        })
+        .catch(e => {
+          console.log(e);
+          context.commit("isLoading", false);
+          context.commit("isError", true);
+        });
+    },
+    getSpell: (context, spellId) => {
+      context.commit("isLoading", true);
+      axios
+        .get(`/spells/all/${spellId}`)
+        .then(result => {
+          //console.log(result.data);
+          context.commit("setSelectedSpell", result.data);
           context.commit("isLoading", false);
         })
         .catch(e => {

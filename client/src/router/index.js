@@ -7,6 +7,10 @@ import Houses from "../views/Houses.vue";
 import House from "../views/House.vue";
 import Books from "../views/Books.vue";
 import Book from "../views/Book.vue";
+import Horcruxes from "../views/Horcruxes.vue";
+import Horcrux from "../views/Horcrux.vue";
+import Spells from "../views/Spells.vue";
+import Spell from "../views/Spell.vue";
 
 Vue.use(VueRouter);
 
@@ -54,6 +58,26 @@ const routes = [
     path: "/books/:id",
     name: "bookdetail",
     component: Book
+  },
+  {
+    path: "/horcruxes",
+    name: "horcruxes",
+    component: Horcruxes
+  },
+  {
+    path: "/horcruxes/:id",
+    name: "horcruxdetail",
+    component: Horcrux
+  },
+  {
+    path: "/spells",
+    name: "spells",
+    component: Spells
+  },
+  {
+    path: "/spells/:id",
+    name: "spelldetail",
+    component: Spell
   }
 ];
 

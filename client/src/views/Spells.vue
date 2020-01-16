@@ -5,11 +5,11 @@
         ><v-icon>mdi-arrow-left </v-icon> Menu</v-btn
       ></router-link
     >
-    <h1>Books</h1>
-    <div class="books">
-      <div v-for="(book, index) in books" v-bind:key="index">
-        <router-link :to="`books/${book._id}`">
-          <BookItem :book="book" />
+    <h1>Spells</h1>
+    <div class="spells">
+      <div v-for="(spell, index) in spells" v-bind:key="index">
+        <router-link :to="`spells/${spell._id}`">
+          <SpellItem :spell="spell" />
         </router-link>
       </div>
     </div>
@@ -20,23 +20,23 @@
 </template>
 
 <script>
-import BookItem from "../components/BookItem";
+import SpellItem from "../components/SpellItem";
 
 export default {
-  name: "Books",
+  name: "Spells",
   components: {
-    BookItem
+    SpellItem
   },
   computed: {
-    books() {
-      return this.$store.state.books;
+    spells() {
+      return this.$store.state.spells;
     },
     loading() {
       return this.$store.state.isLoading;
     }
   },
   created() {
-    this.$store.dispatch("getBooks");
+    this.$store.dispatch("getSpells");
   }
 };
 </script>

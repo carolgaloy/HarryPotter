@@ -1,32 +1,32 @@
 <template>
   <div class="content" v-if="!loading">
-    <router-link to="/books">
-      <v-btn text color="white" class="go-back keep-spaces">
-        <v-icon>mdi-arrow-left </v-icon> Books
-      </v-btn>
-    </router-link>
+    <router-link to="/horcruxes">
+      <v-btn text color="white" class="go-back keep-spaces"
+        ><v-icon>mdi-arrow-left </v-icon> Horcruxes</v-btn
+      ></router-link
+    >
     <div>
-      <img :src="book.img" :alt="`${book.title} Shield`" />
+      <img :src="horcrux.img" :alt="`${horcrux.name} Detail`" />
     </div>
     <div>
-      <h1>{{ book.title }}</h1>
+      <h1>{{ horcrux.name }}</h1>
       <div class="detail-background">
         <div class="details">
           <div>
-            <h2>Year</h2>
-            <p>{{ book.year }}</p>
+            <h2>Death caused</h2>
+            <p>{{ horcrux.death }}, {{ horcrux.deathdate }}</p>
           </div>
           <div>
-            <h2>Pages</h2>
-            <p>{{ book.pages }}</p>
+            <h2>Hiding place</h2>
+            <p>{{ horcrux.hiding }}</p>
           </div>
           <div>
-            <h2>ISBN</h2>
-            <p>{{ book.isbn }}</p>
+            <h2>Destroyed by</h2>
+            <p>{{ horcrux.destroyedby }} with {{ horcrux.destroyedwith }}</p>
           </div>
           <div>
             <h2>Description</h2>
-            <p>{{ book.description }}</p>
+            <p>{{ horcrux.description }}</p>
           </div>
         </div>
       </div>
@@ -40,15 +40,15 @@
 <script>
 export default {
   computed: {
-    book() {
-      return this.$store.state.selectedBook;
+    horcrux() {
+      return this.$store.state.selectedHorcrux;
     },
     loading() {
       return this.$store.state.isLoading;
     }
   },
   created() {
-    this.$store.dispatch("getBook", this.$route.params.id);
+    this.$store.dispatch("getHorcrux", this.$route.params.id);
   }
 };
 </script>
