@@ -1,37 +1,32 @@
 <template>
   <div class="content" v-if="!loading">
-    <router-link to="/houses">
+    <router-link to="/books">
       <v-btn text color="white" class="go-back keep-spaces"
-        ><v-icon>mdi-arrow-left </v-icon> Houses</v-btn
+        ><v-icon>mdi-arrow-left </v-icon> Books</v-btn
       ></router-link
     >
     <div>
-      <img :src="house.img" :alt="`${house.name} Shield`" />
+      <img :src="book.img" :alt="`${book.title} Shield`" />
     </div>
     <div>
-      <h1>{{ house.name }}</h1>
+      <h1>{{ book.title }}</h1>
       <div class="detail-background">
         <div class="details">
           <div>
-            <h2>Founder</h2>
-            <p>{{ house.founder }}</p>
+            <h2>Year</h2>
+            <p>{{ book.year }}</p>
           </div>
           <div>
-            <h2>Head</h2>
-            <p>{{ house.head }}</p>
+            <h2>Pages</h2>
+            <p>{{ book.pages }}</p>
           </div>
           <div>
-            <h2>Ghost</h2>
-            <p>{{ house.ghost }}</p>
+            <h2>ISBN</h2>
+            <p>{{ book.isbn }}</p>
           </div>
           <div>
-            <h2>Colors</h2>
-            <div class="flex">
-              <p v-for="(color, index) in house.colors" v-bind:key="index">
-                <v-icon :color="color.toLowerCase()">mdi-brightness-1 </v-icon>
-                {{ color }}
-              </p>
-            </div>
+            <h2>Description</h2>
+            <p>{{ book.description }}</p>
           </div>
         </div>
       </div>
@@ -45,15 +40,15 @@
 <script>
 export default {
   computed: {
-    house() {
-      return this.$store.state.selectedHouse;
+    book() {
+      return this.$store.state.selectedBook;
     },
     loading() {
       return this.$store.state.isLoading;
     }
   },
   created() {
-    this.$store.dispatch("getHouse", this.$route.params.id);
+    this.$store.dispatch("getBook", this.$route.params.id);
   }
 };
 </script>

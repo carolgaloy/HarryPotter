@@ -23,6 +23,12 @@ export default new Vuex.Store({
     },
     setSelectedHouse: (state, payload) => {
       state.selectedHouse = payload;
+    },
+    setBooks: (state, payload) => {
+      state.books = payload;
+    },
+    setSelectedBook: (state, payload) => {
+      state.selectedBook = payload;
     }
   },
   actions: {
@@ -48,6 +54,36 @@ export default new Vuex.Store({
         .then(result => {
           //console.log(result.data);
           context.commit("setSelectedHouse", result.data);
+          context.commit("isLoading", false);
+        })
+        .catch(e => {
+          console.log(e);
+          context.commit("isLoading", false);
+          context.commit("isError", true);
+        });
+    },
+    getBooks: context => {
+      context.commit("isLoading", true);
+      axios
+        .get("/books/all")
+        .then(result => {
+          //console.log(result.data);
+          context.commit("setBooks", result.data);
+          context.commit("isLoading", false);
+        })
+        .catch(e => {
+          console.log(e);
+          context.commit("isLoading", false);
+          context.commit("isError", true);
+        });
+    },
+    getBook: (context, bookId) => {
+      context.commit("isLoading", true);
+      axios
+        .get(`/books/all/${bookId}`)
+        .then(result => {
+          //console.log(result.data);
+          context.commit("setSelectedBook", result.data);
           context.commit("isLoading", false);
         })
         .catch(e => {

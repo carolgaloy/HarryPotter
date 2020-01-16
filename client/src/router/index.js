@@ -5,6 +5,8 @@ import Human from "../views/Human.vue";
 import Landing from "../views/Landing.vue";
 import Houses from "../views/Houses.vue";
 import House from "../views/House.vue";
+import Books from "../views/Books.vue";
+import Book from "../views/Book.vue";
 
 Vue.use(VueRouter);
 
@@ -42,6 +44,16 @@ const routes = [
     path: "/houses/:id",
     name: "housedetail",
     component: House
+  },
+  {
+    path: "/books",
+    name: "books",
+    component: Books
+  },
+  {
+    path: "/books/:id",
+    name: "bookdetail",
+    component: Book
   }
 ];
 
