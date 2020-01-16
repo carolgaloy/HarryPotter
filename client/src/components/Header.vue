@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-app-bar color="#293132" dense dark>
+  <div class="border">
+    <v-app-bar color="#293132" dense dark fixed>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
       <v-toolbar-title>{{ title }}</v-toolbar-title>
@@ -43,6 +43,10 @@ export default {
 
 <style scoped>
 .v-toolbar__title {
-    font-size: 16px;
+  font-size: 16px;
+}
+
+.border {
+  border-bottom: 1px solid black;
 }
 </style>
