@@ -6,7 +6,7 @@ router.get('/all', (req, res) => {
     spellModel.find({})
         .then(files => {
             res.send(files)
-        }).catch(err => console.log(err));
+        }).catch(err => res.send(err));
 });
 
 router.get('/all/:id', (req, res) => {
@@ -17,7 +17,7 @@ router.get('/all/:id', (req, res) => {
         .then(spell => {
             res.send(spell);
         })
-        .catch(err => console.log(err));
+        .catch(err => res.send(err));
 });
 
 router.get('/type/:type', (req, res) => {
@@ -28,7 +28,7 @@ router.get('/type/:type', (req, res) => {
         .then(spells => {
             res.send(spells);
         })
-        .catch(err => console.log(err));
+        .catch(err => res.send(err));
 });
 
 router.post('/', (req, res) => {

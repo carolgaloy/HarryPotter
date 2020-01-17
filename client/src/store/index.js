@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import booksModule from "./modules/booksModule.js";
 import housesModule from "./modules/housesModule.js";
 import horcruxesModule from "./modules/horcruxesModule.js";
-import axios from "axios";
+import spellsModule from "./modules/spellsModule.js";
 
 Vue.use(Vuex);
 
@@ -19,50 +19,14 @@ export default new Vuex.Store({
     },
     isError: (state, payload) => {
       state.isError = payload;
-    },
-    setSpells: (state, payload) => {
-      state.spells = payload;
-    },
-    setSelectedSpell: (state, payload) => {
-      state.selectedSpell = payload;
     }
   },
-  actions: {
-    getSpells: context => {
-      context.commit("isLoading", true);
-      axios
-        .get("/spells/all")
-        .then(result => {
-          //console.log(result.data);
-          context.commit("setSpells", result.data);
-          context.commit("isLoading", false);
-        })
-        .catch(e => {
-          console.log(e);
-          context.commit("isLoading", false);
-          context.commit("isError", true);
-        });
-    },
-    getSpell: (context, spellId) => {
-      context.commit("isLoading", true);
-      axios
-        .get(`/spells/all/${spellId}`)
-        .then(result => {
-          //console.log(result.data);
-          context.commit("setSelectedSpell", result.data);
-          context.commit("isLoading", false);
-        })
-        .catch(e => {
-          console.log(e);
-          context.commit("isLoading", false);
-          context.commit("isError", true);
-        });
-    }
-  },
+  actions: {},
   getters: {},
   modules: {
     booksModule,
     housesModule,
-    horcruxesModule
+    horcruxesModule,
+    spellsModule
   }
 });

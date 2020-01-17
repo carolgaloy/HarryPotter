@@ -21,6 +21,7 @@
 
 <script>
 import SpellItem from "../components/SpellItem";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Spells",
@@ -28,15 +29,18 @@ export default {
     SpellItem
   },
   computed: {
-    spells() {
-      return this.$store.state.spells;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    }
+    ...mapState({
+      spells: state => state.spellsModule.spells,
+      loading: state => state.isLoading
+    })
+  },
+  methods: {
+    ...mapActions({
+      getSpells: "getSpells"
+    })
   },
   created() {
-    this.$store.dispatch("getSpells");
+    this.getSpells();
   }
 };
 </script>
